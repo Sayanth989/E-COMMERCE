@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
     },
   // rename the file to avoid the duplicate
     filename:(req,file,cb)=>{
-        cb(null,Date.UTC()+path.extname(file.originalname))
+        cb(null,Date.now()+path.extname(file.originalname))
     }
 });
 
@@ -21,6 +21,6 @@ const fileFilter = (req,file,cb)=>{
     }
 };
 
-const uploads = multer({storage,fileFilter})
+const uploads = multer({storage,fileFilter,limits :{fileSize: 5 * 1024 * 1024}})
 
 export default uploads;

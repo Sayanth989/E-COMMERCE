@@ -10,6 +10,8 @@ const addProduct = async (req, res) => {
     }
 
     const productImage = req.file? req.file.filename:'no-image.jpg';
+
+    console.log(req.file);
     
     const product = await Product.create({
       name,
@@ -17,7 +19,7 @@ const addProduct = async (req, res) => {
       price,
       stock,
       category,
-      image
+      image : productImage
     });
 
     res.status(201).json({

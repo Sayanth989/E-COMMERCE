@@ -10,6 +10,8 @@ import router from "./routes/cartRoutes.js";
 
 import Orderrouter from "./routes/orderRoutes.js";
 
+import cors from'cors'
+
 
 
 dotenv.config();
@@ -19,6 +21,18 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+
+//this url can give our details 
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials:true
+}));
+
+//for accessing the file to serve without this it doesnt sent automatically
+app.use('/uploads',express.static('uploads'));
+
+
+
 
 app.use("/api/auth", authRoutes);
 
