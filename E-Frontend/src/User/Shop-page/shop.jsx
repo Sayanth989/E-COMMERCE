@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react";
 import API from "../../api/Api";
-import ProductCard from "../Home-page/ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 
 function ShopPage(){

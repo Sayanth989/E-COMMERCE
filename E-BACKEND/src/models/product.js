@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema(
     },
 
     image: {
-      type: String,
+      type:[String],
       default: "no img right now"
     }
   },

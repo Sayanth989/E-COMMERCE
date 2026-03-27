@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
 
     navigate('/admin/products'); // go back to products list
   } catch (err) {
-    setError(err.response?.data?.msg || 'Failed to add product');
+    setError(err.response?.data?.msg || 'Failed to add product',()=>{console.log('adminadd')});
 
   } finally {
     setLoading(false);

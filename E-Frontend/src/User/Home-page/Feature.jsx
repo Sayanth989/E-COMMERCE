@@ -1,6 +1,4 @@
 import FeatureBox from "./FeaturedBox";
-
-
 import f1 from '../../img/f1.png';
 import f2 from '../../img/f2.png';
 import f3 from '../../img/f3.png';

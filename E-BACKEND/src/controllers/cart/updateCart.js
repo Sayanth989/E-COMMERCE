@@ -2,9 +2,12 @@ import Cart from "../../models/cart.js";
 
 const updateCart = async (req,res)=>{
     try{
-        const {quantity} = res.body;
+        const {quantity} = req.body;
 
-        if(quantity<1){
+        console.log(quantity);
+        
+
+        if(!quantity||quantity<1){
             return res.status(400).json({msg:'Quantity must be at least ! '})
         }
 
@@ -18,13 +21,7 @@ const updateCart = async (req,res)=>{
             item =>item._id.toString() === req.params.itemId
         );
 
-        if(!item){
-            return res.status(404).json({msg:'item not found in'})
-        }
-
 // undate qun
-        item.quantity = quantity;
-
         if(item.quantity<=0){
             cart.items = cart.items.filter(
                 item=> item._id.toString() !==req.params.itemId
@@ -32,8 +29,18 @@ const updateCart = async (req,res)=>{
         }
 
 
+         if(!item){
+            return res.status(404).json({msg:'item not found in'})
+        }
+   
+        console.log('before',item.quantity);
+        
+         item.quantity = Number(quantity);
+
+         console.log('after',item.quantity)
+
         await cart.save();
-        res.status(200).json({msg:' Cart updated'});
+        res.status(200).json({msg:' Cart updated',cart});
     }
     catch(err){
         res.status(500).json({msg : err.message});

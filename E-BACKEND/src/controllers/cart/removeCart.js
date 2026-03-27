@@ -8,8 +8,11 @@ const removeCart = async (req,res)=>{
             return res.status(404).json({msg:'Cart not found'});
 
         }
-       cart.itmes =cart.filter(
-        itme => itme._id.toString() !== req.params.itemId
+       cart.items = cart.items.filter(
+        (itme) => itme._id.toString() !== req.params.itemId          //For each item:
+                                                                     // Convert _id to string
+                                                                     //Compare with itemId from URL
+                                                                   //Keep it ONLY if it is NOT equal
        );
        
        await cart.save();

@@ -18,8 +18,8 @@ router.get('/',getAllProducts);
 router.get('/:id',getOneProduct);
 
 //only admin can 
-router.post("/", protect, adminOnlyy, uploads.single('image'),addProduct);
-router.put('/', protect,adminOnlyy,updateProduct)
+router.post("/", protect, adminOnlyy, uploads.array('images'),addProduct);
+router.put('/:id', protect,adminOnlyy,updateProduct)
 router.delete('/:id',protect,adminOnlyy,deleteProduct);
 
 

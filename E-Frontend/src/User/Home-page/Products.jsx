@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import API from "../../api/Api";
-import ProductCard from "./ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -58,7 +58,9 @@ function Products() {
             Add products from admin panel first!
           </p>
         </div>
-      ) : (
+      ) 
+      
+      : (
         // Products Grid
         <div style={{
           display: "flex", flexWrap: "wrap",
@@ -68,6 +70,7 @@ function Products() {
             <ProductCard
               key={product._id}
               product={product}
+             
             />
           ))}
         </div>

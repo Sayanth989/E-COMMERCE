@@ -1,17 +1,24 @@
 import { useState } from "react";
-import API from "../../api/Api";
+import API from "../api/Api";
+import { Link,} from "react-router-dom";
+
 
 function ProductCard({ product }) {
+   
+
   const { _id, name, description, price, stock, category, image } = product;
   const [hovered, setHovered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+      e.stopPropagation()
+
     const token = localStorage.getItem('token');
     if (!token) {
       window.location.href = '/login';
-      return;
+   return;
     }
     setLoading(true);
     try {
@@ -26,7 +33,10 @@ function ProductCard({ product }) {
   };
 
   return (
+    <Link to={`/products/${_id}`}>
     <div
+
+    
       className={`w-[230px] min-w-[230px] p-[10px_12px] border border-[#cce7d0] rounded-[25px] cursor-pointer m-[15px_0] relative bg-white transition duration-200
       ${hovered ? "shadow-[20px_20px_30px_rgba(84,83,83,0.5)]" : "shadow-[20px_20px_30px_rgba(0,0,0,0.2)]"}`}
       onMouseEnter={() => setHovered(true)}
@@ -98,6 +108,7 @@ function ProductCard({ product }) {
         }
       </button>
     </div>
+    </Link>
   );
 }
 
